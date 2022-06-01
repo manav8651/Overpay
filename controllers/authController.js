@@ -170,7 +170,7 @@ passport.use(
       clientID:
         "854914723763-mnhbpvnbrr5ari66ridn136v3cobg8ad.apps.googleusercontent.com",
       clientSecret: "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",
-      callbackURL: "http://127.0.0.1:3000/auth/google/callback",
+      callbackURL: "https://overpay-backend.herokuapp.com/auth/google/callback",
       passReqToCallback: true,
     },
     function (request, accessToken, refreshToken, profile, done) {
