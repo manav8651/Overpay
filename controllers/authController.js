@@ -1,4 +1,3 @@
-// const { promisify } = require("util");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const User = require("./../models/userModel");
@@ -48,7 +47,6 @@ exports.signup = async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
-    // passwordConfirm: req.body.passwordConfirm,
     otp: generatedOTP,
   });
   const url = 0;
@@ -153,9 +151,8 @@ exports.resetPassword = async (req, res, next) => {
   user.passwordResetToken = undefined;
   user.passwordResetExpires = undefined;
   await user.save();
-  // 3: Update changedPasswordAt property for the user
 
-  // 4: Log the user in, send JWT
+  // 3: Log the user in, send JWT
   const token = signToken(user._id);
 
   res.status(200).json({
@@ -187,33 +184,4 @@ passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 
-// exports.protect = catchAsync(async (req, res, next) => {
-//     let token;
-//     if (
-//       req.headers.authorization &&
-//       req.headers.authorization.startsWith('Bearer')
-//     ) {
-//       token = req.headers.authorization.split(' ')[1];
-//     }
 
-//     if (!token) {
-//       return next(
-//         new AppError('You are not logged in! Please log in to get access.', 401)
-//       );
-//     }
-
-//     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-
-//     const currentUser = await User.findById(decoded.id);
-//     if (!currentUser) {
-//       return next(
-//         new AppError(
-//           'The user belonging to this token does no longer exist.',
-//           401
-//         )
-//       );
-//     }
-
-//     req.user = currentUser;
-//     next();
-// });

@@ -6,7 +6,6 @@ const passport = require("passport");
 const session = require("express-session")
 
 const cookieParser = require("cookie-parser");
-const expressValidator = require("express-validator");
 
 const userRoutes = require("./routes/userRoutes");
 const googleOpenAuth = require("./routes/googleOpenAuth");
@@ -27,10 +26,8 @@ mongoose
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-// app.use(expressValidator());
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
-// app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
 

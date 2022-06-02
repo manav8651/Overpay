@@ -12,7 +12,6 @@ module.exports = class Email {
   }
 
   newTransport() {
-    // if (process.env.NODE_ENV === "production") {
       return nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
         port: process.env.EMAIL_PORT,
@@ -20,18 +19,7 @@ module.exports = class Email {
           user: process.env.EMAIL_USERNAME,
           pass: process.env.EMAIL_PASSWORD
       }}) ;
-    // }
-
-    // return nodemailer.createTransport({
-    //   host: process.env.EMAIL_HOST,
-    //   port: process.env.EMAIL_PORT,
-    //   auth: {
-    //     user: process.env.EMAIL_USERNAME,
-    //     pass: process.env.EMAIL_PASSWORD,
-    //   },
-    // });
   }
-  //Send the actual email
 
   async send(template, subject) {
     // 1:Render HTML based on a pug template
